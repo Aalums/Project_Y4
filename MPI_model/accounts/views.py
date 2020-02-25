@@ -5,7 +5,7 @@ from django.template import loader
 # Create your views here.
 def index(request):
     header_str = 'Hello'
-    template = loader.get_template('index.html')
+    template = loader.get_template('login.html')
     context = {
         'var1': header_str
     }
