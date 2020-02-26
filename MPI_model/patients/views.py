@@ -10,3 +10,11 @@ def addpatient(request):
         'var1': header_str
     }
     return HttpResponse(template.render(context, request))
+
+def patientList(request):
+    header_str = 'Hello'
+    template = loader.get_template('patient_list.html')
+    context = {
+        'var1': header_str
+    }
+    return HttpResponse(template.render(context, request))

@@ -26,5 +26,5 @@ from accounts.views import index
 urlpatterns = [
     url(r'^$', index),
     url(r'login/', include('accounts.urls')),
-    url(r'import_patients/', include('patients.urls'))
+    url(r'patients/', include('patients.urls'))
 ]
