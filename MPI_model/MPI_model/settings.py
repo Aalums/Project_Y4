@@ -85,7 +85,7 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mpi_test',
+        'NAME': 'mpi_project',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

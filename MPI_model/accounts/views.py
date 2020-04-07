@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from accounts.models import Account
+from accounts.models import user
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 def index(request):
     header_str = 'Hello'
     template = loader.get_template('login.html')
-    account = Accounts.objects.filter(username='phpond')
+    account = user.objects.filter(username='aal')
     context = {
         'var1': header_str,
         'user': account[0].username
