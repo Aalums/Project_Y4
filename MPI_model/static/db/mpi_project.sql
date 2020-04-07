@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2020 at 09:39 AM
+-- Generation Time: Apr 07, 2020 at 06:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -18,8 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mpi_test`
+-- Database: `mpi_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts_user`
+--
+
+CREATE TABLE `accounts_user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accounts_user`
+--
+
+INSERT INTO `accounts_user` (`id`, `username`, `password`) VALUES
+(1, 'phpond', '1234'),
+(4, 'aal', '2345');
 
 -- --------------------------------------------------------
 
@@ -85,7 +105,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (21, 'Can add session', 6, 'add_session'),
 (22, 'Can change session', 6, 'change_session'),
 (23, 'Can delete session', 6, 'delete_session'),
-(24, 'Can view session', 6, 'view_session');
+(24, 'Can view session', 6, 'view_session'),
+(25, 'Can add user', 7, 'add_user'),
+(26, 'Can change user', 7, 'change_user'),
+(27, 'Can delete user', 7, 'delete_user'),
+(28, 'Can view user', 7, 'view_user');
 
 -- --------------------------------------------------------
 
@@ -106,6 +130,13 @@ CREATE TABLE `auth_user` (
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-07 15:49:14.348210', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098');
 
 -- --------------------------------------------------------
 
@@ -148,6 +179,14 @@ CREATE TABLE `django_admin_log` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2020-04-07 15:51:06.208271', '1', 'user object (1)', 1, '[{\"added\": {}}]', 7, 1),
+(2, '2020-04-07 16:01:44.823923', '4', 'aal', 1, '[{\"added\": {}}]', 7, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -165,6 +204,7 @@ CREATE TABLE `django_content_type` (
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
+(7, 'accounts', 'user'),
 (1, 'admin', 'logentry'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
@@ -190,23 +230,24 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2020-04-06 08:30:57.633583'),
-(2, 'auth', '0001_initial', '2020-04-06 08:30:58.083379'),
-(3, 'admin', '0001_initial', '2020-04-06 08:30:58.743615'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2020-04-06 08:30:58.899201'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2020-04-06 08:30:58.909174'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2020-04-06 08:30:59.016886'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2020-04-06 08:30:59.115658'),
-(8, 'auth', '0003_alter_user_email_max_length', '2020-04-06 08:30:59.214103'),
-(9, 'auth', '0004_alter_user_username_opts', '2020-04-06 08:30:59.238292'),
-(10, 'auth', '0005_alter_user_last_login_null', '2020-04-06 08:30:59.396869'),
-(11, 'auth', '0006_require_contenttypes_0002', '2020-04-06 08:30:59.404848'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2020-04-06 08:30:59.438777'),
-(13, 'auth', '0008_alter_user_username_max_length', '2020-04-06 08:30:59.500609'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2020-04-06 08:30:59.558438'),
-(15, 'auth', '0010_alter_group_name_max_length', '2020-04-06 08:30:59.604314'),
-(16, 'auth', '0011_update_proxy_permissions', '2020-04-06 08:30:59.630252'),
-(17, 'sessions', '0001_initial', '2020-04-06 08:30:59.706043');
+(1, 'contenttypes', '0001_initial', '2020-04-07 15:02:29.312738'),
+(2, 'auth', '0001_initial', '2020-04-07 15:02:29.496248'),
+(3, 'admin', '0001_initial', '2020-04-07 15:02:30.095724'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2020-04-07 15:02:30.235388'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2020-04-07 15:02:30.247357'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2020-04-07 15:02:30.439256'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2020-04-07 15:02:30.700145'),
+(8, 'auth', '0003_alter_user_email_max_length', '2020-04-07 15:02:30.724087'),
+(9, 'auth', '0004_alter_user_username_opts', '2020-04-07 15:02:30.740126'),
+(10, 'auth', '0005_alter_user_last_login_null', '2020-04-07 15:02:30.809915'),
+(11, 'auth', '0006_require_contenttypes_0002', '2020-04-07 15:02:30.812908'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2020-04-07 15:02:30.830860'),
+(13, 'auth', '0008_alter_user_username_max_length', '2020-04-07 15:02:30.851806'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2020-04-07 15:02:30.878731'),
+(15, 'auth', '0010_alter_group_name_max_length', '2020-04-07 15:02:30.902668'),
+(16, 'auth', '0011_update_proxy_permissions', '2020-04-07 15:02:30.915639'),
+(17, 'sessions', '0001_initial', '2020-04-07 15:02:30.953531'),
+(18, 'accounts', '0001_initial', '2020-04-07 15:50:31.502269');
 
 -- --------------------------------------------------------
 
@@ -220,22 +261,22 @@ CREATE TABLE `django_session` (
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `test`
+-- Dumping data for table `django_session`
 --
 
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
-  `username` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL,
-  `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('xpzu1rj011zc1d9im7pwok7tn6auwhew', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-21 15:49:14.352200');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accounts_user`
+--
+ALTER TABLE `accounts_user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `auth_group`
@@ -311,14 +352,14 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indexes for table `test`
---
-ALTER TABLE `test`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `accounts_user`
+--
+ALTER TABLE `accounts_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -336,13 +377,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -360,19 +401,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
