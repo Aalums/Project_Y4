@@ -11,15 +11,15 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Create your views here.
-def index(request):
-    header_str = 'Hello'
-    template = loader.get_template('login.html')
-    account = user.objects.filter(username='aal')
-    context = {
-        'var1': header_str,
-        'user': account[0].username
-    }
-    return HttpResponse(template.render(context, request))
+# def index(request):
+#     header_str = 'Hello'
+#     template = loader.get_template('login.html')
+#     account = user.objects.filter(username='aal')
+#     context = {
+#         'var1': header_str,
+#         'user': account[0].username
+#     }
+#     return HttpResponse(template.render(context, request))
 
 def login_request(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def login_request(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('patients/patient_list.html'))
+                return HttpResponseRedirect(reverse('patients:patient_list'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
@@ -38,3 +38,7 @@ def login_request(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'login.html', {})
+
+def logout_request(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('accounts:user_login'))

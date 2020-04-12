@@ -137,3 +137,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/MPI_model/static/',
 ]
+
+LOGIN_URL = '/account/login_request'

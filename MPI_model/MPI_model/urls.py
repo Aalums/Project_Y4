@@ -32,8 +32,11 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('', include('accounts.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('patients/', include('patients.urls')),
-    path('prediction/', include('prediction.urls')),
+    # path('', include('accounts.urls', 'accounts')),
+    # path('accounts/', include('accounts.urls')),
+    # path('patients/', include('patients.urls')),
+    # path('prediction/', include('prediction.urls')),
+    path('', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('patients', include(('patients.urls', 'patients'), namespace='patients')),
+    path('prediction', include(('prediction.urls', 'prediction'), namespace='prediction')),
 ]
