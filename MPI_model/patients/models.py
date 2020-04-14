@@ -6,7 +6,6 @@ class patients(models.Model):
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
     gender = models.CharField(max_length=10)
-    age = models.IntegerField()
 
 class patient_characteristic(models.Model):
     cha_id = models.AutoField(primary_key=True)
@@ -16,6 +15,7 @@ class patient_characteristic(models.Model):
     ht = models.CharField(max_length=1)
     dlp = models.CharField(max_length=1)
     ckd = models.CharField(max_length=1)
+    age = models.IntegerField(null=True)
     HN = models.ForeignKey(patients, on_delete=models.CASCADE)
 
 class patient_mpi(models.Model):
