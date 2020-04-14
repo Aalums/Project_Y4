@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2020 at 06:05 PM
+-- Generation Time: Apr 14, 2020 at 10:44 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -109,7 +109,19 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (25, 'Can add user', 7, 'add_user'),
 (26, 'Can change user', 7, 'change_user'),
 (27, 'Can delete user', 7, 'delete_user'),
-(28, 'Can view user', 7, 'view_user');
+(28, 'Can view user', 7, 'view_user'),
+(29, 'Can add patient_characteristic', 8, 'add_patient_characteristic'),
+(30, 'Can change patient_characteristic', 8, 'change_patient_characteristic'),
+(31, 'Can delete patient_characteristic', 8, 'delete_patient_characteristic'),
+(32, 'Can view patient_characteristic', 8, 'view_patient_characteristic'),
+(33, 'Can add patients', 9, 'add_patients'),
+(34, 'Can change patients', 9, 'change_patients'),
+(35, 'Can delete patients', 9, 'delete_patients'),
+(36, 'Can view patients', 9, 'view_patients'),
+(37, 'Can add patient_mpi', 10, 'add_patient_mpi'),
+(38, 'Can change patient_mpi', 10, 'change_patient_mpi'),
+(39, 'Can delete patient_mpi', 10, 'delete_patient_mpi'),
+(40, 'Can view patient_mpi', 10, 'view_patient_mpi');
 
 -- --------------------------------------------------------
 
@@ -136,7 +148,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-07 15:49:14.348210', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098');
+(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-12 12:28:10.235221', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
+(2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-04-12 16:15:22.499728', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000');
 
 -- --------------------------------------------------------
 
@@ -185,7 +198,9 @@ CREATE TABLE `django_admin_log` (
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
 (1, '2020-04-07 15:51:06.208271', '1', 'user object (1)', 1, '[{\"added\": {}}]', 7, 1),
-(2, '2020-04-07 16:01:44.823923', '4', 'aal', 1, '[{\"added\": {}}]', 7, 1);
+(2, '2020-04-07 16:01:44.823923', '4', 'aal', 1, '[{\"added\": {}}]', 7, 1),
+(3, '2020-04-12 15:18:59.235888', '2', 'phpond', 1, '[{\"added\": {}}]', 4, 1),
+(4, '2020-04-12 15:19:39.837769', '2', 'phpond', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -210,6 +225,9 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
 (5, 'contenttypes', 'contenttype'),
+(9, 'patients', 'patients'),
+(8, 'patients', 'patient_characteristic'),
+(10, 'patients', 'patient_mpi'),
 (6, 'sessions', 'session');
 
 -- --------------------------------------------------------
@@ -247,7 +265,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (15, 'auth', '0010_alter_group_name_max_length', '2020-04-07 15:02:30.902668'),
 (16, 'auth', '0011_update_proxy_permissions', '2020-04-07 15:02:30.915639'),
 (17, 'sessions', '0001_initial', '2020-04-07 15:02:30.953531'),
-(18, 'accounts', '0001_initial', '2020-04-07 15:50:31.502269');
+(18, 'accounts', '0001_initial', '2020-04-07 15:50:31.502269'),
+(19, 'patients', '0001_initial', '2020-04-12 12:27:51.345166');
 
 -- --------------------------------------------------------
 
@@ -267,6 +286,63 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('xpzu1rj011zc1d9im7pwok7tn6auwhew', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-21 15:49:14.352200');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patients_patients`
+--
+
+CREATE TABLE `patients_patients` (
+  `id` int(11) NOT NULL,
+  `HN` varchar(9) NOT NULL,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `age` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patients_patient_characteristic`
+--
+
+CREATE TABLE `patients_patient_characteristic` (
+  `cha_id` int(11) NOT NULL,
+  `cha_date` datetime(6) NOT NULL,
+  `bmi` decimal(20,2) NOT NULL,
+  `dm` varchar(1) NOT NULL,
+  `ht` varchar(1) NOT NULL,
+  `dlp` varchar(1) NOT NULL,
+  `ckd` varchar(1) NOT NULL,
+  `HN_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patients_patient_mpi`
+--
+
+CREATE TABLE `patients_patient_mpi` (
+  `mpi_id` int(11) NOT NULL,
+  `mpi_date` datetime(6) NOT NULL,
+  `LAD_4dmspect` decimal(20,2) NOT NULL,
+  `LAD_wallthick` decimal(20,2) NOT NULL,
+  `LAD_wallmotion` decimal(20,2) NOT NULL,
+  `LAD_CAG` varchar(1) NOT NULL,
+  `LCX_4dmspect` decimal(20,2) NOT NULL,
+  `LCX_wallthick` decimal(20,2) NOT NULL,
+  `LCX_wallmotion` decimal(20,2) NOT NULL,
+  `LCX_CAG` varchar(1) NOT NULL,
+  `RCA_4dmspect` decimal(20,2) NOT NULL,
+  `RCA_wallthick` decimal(20,2) NOT NULL,
+  `RCA_wallmotion` decimal(20,2) NOT NULL,
+  `RCA_CAG` varchar(1) NOT NULL,
+  `LVEF` int(11) NOT NULL,
+  `HN_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -352,6 +428,26 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `patients_patients`
+--
+ALTER TABLE `patients_patients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `patients_patient_characteristic`
+--
+ALTER TABLE `patients_patient_characteristic`
+  ADD PRIMARY KEY (`cha_id`),
+  ADD KEY `patients_patient_cha_HN_id_ec5f6881_fk_patients_` (`HN_id`);
+
+--
+-- Indexes for table `patients_patient_mpi`
+--
+ALTER TABLE `patients_patient_mpi`
+  ADD PRIMARY KEY (`mpi_id`),
+  ADD KEY `patients_patient_mpi_HN_id_765e6c69_fk_patients_patients_id` (`HN_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -377,13 +473,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -401,19 +497,37 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `patients_patients`
+--
+ALTER TABLE `patients_patients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patients_patient_characteristic`
+--
+ALTER TABLE `patients_patient_characteristic`
+  MODIFY `cha_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patients_patient_mpi`
+--
+ALTER TABLE `patients_patient_mpi`
+  MODIFY `mpi_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -452,6 +566,18 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `patients_patient_characteristic`
+--
+ALTER TABLE `patients_patient_characteristic`
+  ADD CONSTRAINT `patients_patient_cha_HN_id_ec5f6881_fk_patients_` FOREIGN KEY (`HN_id`) REFERENCES `patients_patients` (`id`);
+
+--
+-- Constraints for table `patients_patient_mpi`
+--
+ALTER TABLE `patients_patient_mpi`
+  ADD CONSTRAINT `patients_patient_mpi_HN_id_765e6c69_fk_patients_patients_id` FOREIGN KEY (`HN_id`) REFERENCES `patients_patients` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
