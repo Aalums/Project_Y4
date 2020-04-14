@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class patients(models.Model):
+    patient_id = models.AutoField(primary_key=True)
     HN = models.CharField(max_length=9)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
@@ -10,13 +11,13 @@ class patients(models.Model):
 class patient_characteristic(models.Model):
     cha_id = models.AutoField(primary_key=True)
     cha_date = models.DateTimeField(auto_now_add=True, blank=True)
+    age = models.IntegerField(null=True)
     bmi = models.DecimalField(max_digits=20, decimal_places=2)
     dm = models.CharField(max_length=1)
     ht = models.CharField(max_length=1)
     dlp = models.CharField(max_length=1)
     ckd = models.CharField(max_length=1)
-    age = models.IntegerField(null=True)
-    HN = models.ForeignKey(patients, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey(patients, on_delete=models.CASCADE)
 
 class patient_mpi(models.Model):
     mpi_id = models.AutoField(primary_key=True)
@@ -37,5 +38,5 @@ class patient_mpi(models.Model):
     RCA_wallmotion = models.DecimalField(max_digits=20, decimal_places=2)
     RCA_CAG = models.CharField(max_length=1)
     LVEF = models.IntegerField()
-    HN = models.ForeignKey(patients, on_delete=models.CASCADE)
-    # cha_id = models.ForeignKey(patients, on_delete=models.CASCADE)
+    cha_id = models.ForeignKey(patients, on_delete=models.CASCADE)
+    # HN = models.ForeignKey(patients, on_delete=models.CASCADE)

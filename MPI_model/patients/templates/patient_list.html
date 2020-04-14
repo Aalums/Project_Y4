@@ -135,18 +135,14 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for i in list_patient %}
                     <tr>
-                      <td>012543-58</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>Result</td>
+                      <td value="{{ i.HN }}">{{ i.HN }}</td>
+                      <td value="{{ i.fname }}">{{ i.fname }}</td>
+                      <td value="{{ i.lname }}">{{ i.lname }}</td>
+                      <td><a href="/patients/patientinfo/?pid={{ i.patient_id }}"><i class="fas fa-search fa-sm"></i></a></td>
                     </tr>
-                    <tr>
-                      <td>654213-10</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>Result</td>
-                    </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
