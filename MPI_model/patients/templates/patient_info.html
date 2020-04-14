@@ -123,10 +123,9 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                  HN : <br>
-                  Name : <br>
-                  Age : <br>
-                  Gender : <br><br>
+                  HN : {{ patient.HN }}<br>
+                  Name : {{ patient.fname }} {{ patient.lname }}<br>
+                  Gender : {{ patient.gender }}<br><br>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -141,26 +140,18 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for i in list_patient_info %}
                     <tr>
-                      <td>2020-04-06</td>
-                      <td>10</td>
-                      <td>+</td>
-                      <td>+</td>
-                      <th>+</th>
-                      <th>+</th>
-                      <th>+</th>
-                      <th>Result</th>
+                      <td value="{{ i.cha_date }}">{{ i.cha_date }}</td>
+                      <td value="{{ i.age }}">{{ i.age }}</td>
+                      <td value="{{ i.bmi }}">{{ i.bmi }}</td>
+                      <td value="{{ i.dm }}">{{ i.dm }}</td>
+                      <td value="{{ i.ht }}">{{ i.ht }}</td>
+                      <th value="{{ i.dlp }}">{{ i.dlp }}</th>
+                      <th value="{{ i.ckd }}">{{ i.ckd }}</th>
+                      <th><a href=""><i class="fas fa-search fa-sm"></i></a></th>
                     </tr>
-                    <tr>
-                      <td>2020-03-06</td>
-                      <td>12</td>
-                      <td>+</td>
-                      <td>+</td>
-                      <th>+</th>
-                      <th>+</th>
-                      <th>+</th>
-                      <th>Result</th>
-                    </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>

@@ -140,7 +140,7 @@
                       <td value="{{ i.HN }}">{{ i.HN }}</td>
                       <td value="{{ i.fname }}">{{ i.fname }}</td>
                       <td value="{{ i.lname }}">{{ i.lname }}</td>
-                      <td><a href="/patient_info/?hn={{ i.HN }}"><i class="fas fa-search fa-sm"></i></a></td>
+                      <td><a href="/patients/patientinfo/?pid={{ i.patient_id }}"><i class="fas fa-search fa-sm"></i></a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
