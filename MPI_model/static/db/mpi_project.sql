@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2020 at 11:35 AM
+-- Generation Time: Apr 14, 2020 at 04:33 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -148,7 +148,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-14 09:11:46.308633', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
+(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-14 14:18:58.034269', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
 (2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-04-14 09:28:29.880379', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000');
 
 -- --------------------------------------------------------
@@ -267,7 +267,15 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (17, 'sessions', '0001_initial', '2020-04-07 15:02:30.953531'),
 (18, 'accounts', '0001_initial', '2020-04-07 15:50:31.502269'),
 (19, 'patients', '0001_initial', '2020-04-12 12:27:51.345166'),
-(20, 'patients', '0002_auto_20200414_1552', '2020-04-14 08:52:48.319376');
+(20, 'patients', '0002_auto_20200414_1552', '2020-04-14 08:52:48.319376'),
+(21, 'patients', '0003_auto_20200414_2036', '2020-04-14 13:37:01.275633'),
+(22, 'patients', '0002_auto_20200414_2102', '2020-04-14 14:02:51.777035'),
+(23, 'patients', '0003_auto_20200414_2105', '2020-04-14 14:05:19.638368'),
+(24, 'patients', '0004_auto_20200414_2106', '2020-04-14 14:06:53.407187'),
+(25, 'patients', '0005_auto_20200414_2108', '2020-04-14 14:08:21.951837'),
+(26, 'patients', '0002_auto_20200414_2120', '2020-04-14 14:20:59.228490'),
+(27, 'patients', '0003_auto_20200414_2127', '2020-04-14 14:27:42.763738'),
+(28, 'patients', '0004_auto_20200414_2131', '2020-04-14 14:31:36.743729');
 
 -- --------------------------------------------------------
 
@@ -286,7 +294,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('o6ysxonbmcrlhqh84m1ztckqumpjusxf', 'OWI1NGIzMjg2MTg4YmJmYWIxNWFmYmE0NGM0M2U4YTlkOGRhMTBjNTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZTlhODY4NzQ5NmEyMTBjMmNjYmJmODhhYTkyMTE4Y2M5ZTU4YjI4In0=', '2020-04-28 09:28:29.891556'),
+('bvjtf2yrxy8cup2m72hjcizraw3ayao8', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-28 14:18:58.056304'),
 ('xpzu1rj011zc1d9im7pwok7tn6auwhew', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-21 15:49:14.352200');
 
 -- --------------------------------------------------------
@@ -296,7 +304,7 @@ INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALU
 --
 
 CREATE TABLE `patients_patients` (
-  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
   `HN` varchar(9) NOT NULL,
   `fname` varchar(30) NOT NULL,
   `lname` varchar(30) NOT NULL,
@@ -317,7 +325,7 @@ CREATE TABLE `patients_patient_characteristic` (
   `ht` varchar(1) NOT NULL,
   `dlp` varchar(1) NOT NULL,
   `ckd` varchar(1) NOT NULL,
-  `HN_id` int(11) NOT NULL,
+  `pid_id` int(11) NOT NULL,
   `age` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -343,7 +351,7 @@ CREATE TABLE `patients_patient_mpi` (
   `RCA_wallmotion` decimal(20,2) NOT NULL,
   `RCA_CAG` varchar(1) NOT NULL,
   `LVEF` int(11) NOT NULL,
-  `HN_id` int(11) NOT NULL
+  `char_id_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -433,21 +441,21 @@ ALTER TABLE `django_session`
 -- Indexes for table `patients_patients`
 --
 ALTER TABLE `patients_patients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`pid`);
 
 --
 -- Indexes for table `patients_patient_characteristic`
 --
 ALTER TABLE `patients_patient_characteristic`
   ADD PRIMARY KEY (`cha_id`),
-  ADD KEY `patients_patient_cha_HN_id_ec5f6881_fk_patients_` (`HN_id`);
+  ADD KEY `patients_patient_cha_HN_id_ec5f6881_fk_patients_` (`pid_id`);
 
 --
 -- Indexes for table `patients_patient_mpi`
 --
 ALTER TABLE `patients_patient_mpi`
   ADD PRIMARY KEY (`mpi_id`),
-  ADD KEY `patients_patient_mpi_HN_id_765e6c69_fk_patients_patients_id` (`HN_id`);
+  ADD KEY `patients_patient_mpi_HN_id_765e6c69_fk_patients_patients_id` (`char_id_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -511,25 +519,13 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `patients_patients`
 --
 ALTER TABLE `patients_patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `patients_patient_characteristic`
---
-ALTER TABLE `patients_patient_characteristic`
-  MODIFY `cha_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `patients_patient_mpi`
---
-ALTER TABLE `patients_patient_mpi`
-  MODIFY `mpi_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -568,18 +564,6 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
-
---
--- Constraints for table `patients_patient_characteristic`
---
-ALTER TABLE `patients_patient_characteristic`
-  ADD CONSTRAINT `patients_patient_cha_HN_id_ec5f6881_fk_patients_` FOREIGN KEY (`HN_id`) REFERENCES `patients_patients` (`id`);
-
---
--- Constraints for table `patients_patient_mpi`
---
-ALTER TABLE `patients_patient_mpi`
-  ADD CONSTRAINT `patients_patient_mpi_HN_id_765e6c69_fk_patients_patients_id` FOREIGN KEY (`HN_id`) REFERENCES `patients_patients` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

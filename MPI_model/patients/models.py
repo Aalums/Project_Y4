@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class patients(models.Model):
-    patient_id = models.AutoField(primary_key=True)
+    pid = models.AutoField(primary_key=True)
     HN = models.CharField(max_length=9)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
@@ -17,7 +17,7 @@ class patient_characteristic(models.Model):
     ht = models.CharField(max_length=1)
     dlp = models.CharField(max_length=1)
     ckd = models.CharField(max_length=1)
-    patient_id = models.ForeignKey(patients, on_delete=models.CASCADE)
+    pid = models.ForeignKey(patients, on_delete=models.CASCADE)
 
 class patient_mpi(models.Model):
     mpi_id = models.AutoField(primary_key=True)
@@ -38,5 +38,4 @@ class patient_mpi(models.Model):
     RCA_wallmotion = models.DecimalField(max_digits=20, decimal_places=2)
     RCA_CAG = models.CharField(max_length=1)
     LVEF = models.IntegerField()
-    cha_id = models.ForeignKey(patients, on_delete=models.CASCADE)
-    # HN = models.ForeignKey(patients, on_delete=models.CASCADE)
+    char_id = models.ForeignKey(patient_characteristic, on_delete=models.CASCADE)
