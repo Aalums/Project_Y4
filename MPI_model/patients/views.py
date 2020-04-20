@@ -19,9 +19,10 @@ def patientList(request):
     return render(request, 'patient_list.html', context)
 
 def patientInfo(request):
-    patient_id = request.GET.get('pid')
+    patient_id = int(request.GET.get('pid'))
+    print("pid = " + str(patient_id))
     context = {
-        'patient': patients.objects.filter(patient_id = patient_id),
-        'patient_info': list(patient_characteristic.objects.filter(patient_id = patient_id))
+        'patient': patients.objects.filter(pid = patient_id).first(),
+        'patient_info': list(patient_characteristic.objects.filter(pid = patient_id))
     }
     return render(request, 'patient_info.html', context)
