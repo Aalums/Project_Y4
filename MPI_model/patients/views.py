@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from patients.models import patients, patient_characteristic
+from patients.models import patients, patient_info
 
 # Create your views here.
 def addpatient(request):
@@ -23,6 +23,6 @@ def patientInfo(request):
     print("pid = " + str(patient_id))
     context = {
         'patient': patients.objects.filter(pid = patient_id).first(),
-        'patient_info': list(patient_characteristic.objects.filter(pid = patient_id))
+        'patient_info': list(patient_info.objects.filter(pid = patient_id))
     }
     return render(request, 'patient_info.html', context)

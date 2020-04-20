@@ -34,35 +34,3 @@ class patient_info(models.Model):
     RCA_CAG = models.BinaryField()
     LVEF = models.IntegerField()
     pid = models.ForeignKey(patients, on_delete=models.CASCADE)
-
-# class patient_characteristic(models.Model):
-#     cha_id = models.AutoField(primary_key=True)
-#     cha_date = models.DateTimeField(auto_now_add=True, blank=True)
-#     age = models.IntegerField(null=True)
-#     bmi = models.DecimalField(max_digits=20, decimal_places=2)
-#     dm = models.CharField(max_length=1)
-#     ht = models.CharField(max_length=1)
-#     dlp = models.CharField(max_length=1)
-#     ckd = models.CharField(max_length=1)
-#     pid = models.ForeignKey(patients, on_delete=models.CASCADE)
-
-# class patient_mpi(models.Model):
-#     mpi_id = models.AutoField(primary_key=True)
-#     mpi_date = models.DateTimeField(auto_now_add=True, blank=True)
-#     # LAD
-#     LAD_4dmspect = models.DecimalField(max_digits=20, decimal_places=2)
-#     LAD_wallthick = models.DecimalField(max_digits=20, decimal_places=2)
-#     LAD_wallmotion = models.DecimalField(max_digits=20, decimal_places=2)
-#     LAD_CAG = models.CharField(max_length=1)
-#     # LCX
-#     LCX_4dmspect = models.DecimalField(max_digits=20, decimal_places=2)
-#     LCX_wallthick = models.DecimalField(max_digits=20, decimal_places=2)
-#     LCX_wallmotion = models.DecimalField(max_digits=20, decimal_places=2)
-#     LCX_CAG = models.CharField(max_length=1)
-#     # RCA
-#     RCA_4dmspect = models.DecimalField(max_digits=20, decimal_places=2)
-#     RCA_wallthick = models.DecimalField(max_digits=20, decimal_places=2)
-#     RCA_wallmotion = models.DecimalField(max_digits=20, decimal_places=2)
-#     RCA_CAG = models.CharField(max_length=1)
-#     LVEF = models.IntegerField()
-#     char_id = models.ForeignKey(patient_characteristic, on_delete=models.CASCADE)
