@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 11:38 AM
+-- Generation Time: Apr 21, 2020 at 04:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -282,7 +282,10 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (26, 'patients', '0002_auto_20200414_2120', '2020-04-14 14:20:59.228490'),
 (27, 'patients', '0003_auto_20200414_2127', '2020-04-14 14:27:42.763738'),
 (28, 'patients', '0004_auto_20200414_2131', '2020-04-14 14:31:36.743729'),
-(29, 'patients', '0005_auto_20200420_1625', '2020-04-20 09:25:22.066620');
+(29, 'patients', '0005_auto_20200420_1625', '2020-04-20 09:25:22.066620'),
+(30, 'patients', '0006_auto_20200420_1659', '2020-04-20 09:59:10.474131'),
+(31, 'patients', '0006_auto_20200421_2106', '2020-04-21 14:06:55.582245'),
+(32, 'patients', '0007_patient_info', '2020-04-21 14:07:57.701216');
 
 -- --------------------------------------------------------
 
@@ -315,15 +318,8 @@ CREATE TABLE `patients_patients` (
   `HN` varchar(9) NOT NULL,
   `fname` varchar(30) NOT NULL,
   `lname` varchar(30) NOT NULL,
-  `gender` longblob NOT NULL
+  `gender` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `patients_patients`
---
-
-INSERT INTO `patients_patients` (`pid`, `HN`, `fname`, `lname`, `gender`) VALUES
-(1, 'HH-12233', 'pond', 'oa', 0x66656d616c65);
 
 -- --------------------------------------------------------
 
@@ -332,26 +328,26 @@ INSERT INTO `patients_patients` (`pid`, `HN`, `fname`, `lname`, `gender`) VALUES
 --
 
 CREATE TABLE `patients_patient_info` (
-  `info_id` int(11) NOT NULL,
+  `no` int(11) NOT NULL,
   `date` datetime(6) NOT NULL,
   `age` int(11) NOT NULL,
-  `bmi` decimal(20,2) NOT NULL,
-  `dm` longblob NOT NULL,
-  `ht` longblob NOT NULL,
-  `dlp` longblob NOT NULL,
-  `ckd` longblob NOT NULL,
-  `LAD_4dmspect` decimal(20,2) NOT NULL,
-  `LAD_wallthick` decimal(20,2) NOT NULL,
-  `LAD_wallmotion` decimal(20,2) NOT NULL,
-  `LAD_CAG` longblob NOT NULL,
-  `LCX_4dmspect` decimal(20,2) NOT NULL,
-  `LCX_wallthick` decimal(20,2) NOT NULL,
-  `LCX_wallmotion` decimal(20,2) NOT NULL,
-  `LCX_CAG` longblob NOT NULL,
-  `RCA_4dmspect` decimal(20,2) NOT NULL,
-  `RCA_wallthick` decimal(20,2) NOT NULL,
-  `RCA_wallmotion` decimal(20,2) NOT NULL,
-  `RCA_CAG` longblob NOT NULL,
+  `BMI` decimal(20,2) NOT NULL,
+  `DM` int(11) NOT NULL,
+  `HT` int(11) NOT NULL,
+  `DLP` int(11) NOT NULL,
+  `CKD` int(11) NOT NULL,
+  `LAD4dmspect` decimal(20,2) NOT NULL,
+  `LADwallthick` decimal(20,2) NOT NULL,
+  `LADwallmotion` decimal(20,2) NOT NULL,
+  `LADCAG` int(11) NOT NULL,
+  `LCX4dmspect` decimal(20,2) NOT NULL,
+  `LCXwallthick` decimal(20,2) NOT NULL,
+  `LCXwallmotion` decimal(20,2) NOT NULL,
+  `LCXCAG` int(11) NOT NULL,
+  `RCA4dmspect` decimal(20,2) NOT NULL,
+  `RCAwallthick` decimal(20,2) NOT NULL,
+  `RCAwallmotion` decimal(20,2) NOT NULL,
+  `RCACAG` int(11) NOT NULL,
   `LVEF` int(11) NOT NULL,
   `pid_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -449,7 +445,7 @@ ALTER TABLE `patients_patients`
 -- Indexes for table `patients_patient_info`
 --
 ALTER TABLE `patients_patient_info`
-  ADD PRIMARY KEY (`info_id`),
+  ADD PRIMARY KEY (`no`),
   ADD KEY `patients_patient_info_pid_id_b7dcd346_fk_patients_patients_pid` (`pid_id`);
 
 --
@@ -514,7 +510,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `patients_patients`
@@ -526,7 +522,7 @@ ALTER TABLE `patients_patients`
 -- AUTO_INCREMENT for table `patients_patient_info`
 --
 ALTER TABLE `patients_patient_info`
-  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

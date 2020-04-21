@@ -6,7 +6,7 @@ class patients(models.Model):
     HN = models.CharField(max_length=9)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
-    gender = models.IntegerField()
+    gender = models.IntegerField(default=0)
 
 class patient_info(models.Model):
     no = models.AutoField(primary_key=True)
