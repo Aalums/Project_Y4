@@ -33,5 +33,5 @@ class patient_info(models.Model):
     RCAwallmotion = models.DecimalField(max_digits=20, decimal_places=2)
     RCACAG = models.IntegerField(default=0)
     LVEF = models.IntegerField(default=0)
-    CAG = models.IntegerField(default=0)
+    # CAG = models.IntegerField(default=0)
     pid = models.ForeignKey(patients, on_delete=models.CASCADE)

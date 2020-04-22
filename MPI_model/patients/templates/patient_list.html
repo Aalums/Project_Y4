@@ -46,7 +46,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients/addpatient">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Add Patient</span></a>
       </li>
@@ -55,7 +55,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Patient List</span></a>
       </li>
@@ -92,7 +92,7 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-              <!-- Account -->
+            <!-- Account -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -101,7 +101,8 @@
               </a>
               <!-- Dropdown -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{% url 'accounts:logout' %}" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="{% url 'accounts:logout' %}" data-toggle="modal"
+                  data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -120,7 +121,17 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Patient List</h6>
+              <div class="form-group row">
+                <div class="col-sm-11">
+                  <h6 class="m-0 font-weight-bold text-primary">Patient List</h6>
+                </div>
+                <!-- Add patient btn -->
+                <div class="col-sm-1">
+                  <a href="/patients/addpatient" class="btn btn-primary btn-circle .btn-lg">
+                    <i class="fas fa-plus" style="color:white"></i>
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">

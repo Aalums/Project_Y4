@@ -46,7 +46,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients/addpatient">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Add Patient</span></a>
       </li>
@@ -55,7 +55,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Patient List</span></a>
       </li>
@@ -122,6 +122,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Patient Information</h6>
             </div>
             <div class="card-body">
+
               <div class="form-group row">
                 <div class="col-sm-11">
                   HN : {{ patient.HN }}<br>
@@ -138,6 +139,7 @@
                   </a>
                 </div>
               </div>
+
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -149,7 +151,7 @@
                       <th>HT</th>
                       <th>DLP</th>
                       <th>CKD</th>
-                      <th>CAG</th>
+                      <!-- <th>CAG</th> -->
                       <th>Predict</th>
                     </tr>
                   </thead>
@@ -163,7 +165,7 @@
                       <td value="{{ i.ht }}">{{ i.HT }}</td>
                       <td value="{{ i.dlp }}">{{ i.DLP }}</td>
                       <td value="{{ i.ckd }}">{{ i.CKD }}</td>
-                      <td value="{{ i.ckd }}">{{ i.CAG }}</td>
+                      <!-- <td value="{{ i.ckd }}">{{ i.CAG }}</td> -->
                       <td><a href=""><i class="fas fa-sitemap"></i></a></td>
                     </tr>
                     {% endfor %}
