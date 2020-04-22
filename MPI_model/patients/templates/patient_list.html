@@ -109,7 +109,6 @@
             </li>
             {% endif %}
 
-
           </ul>
 
         </nav>
@@ -131,6 +130,7 @@
                       <th>HN</th>
                       <th>First Name</th>
                       <th>Last Name</th>
+                      <th>Gender</th>
                       <th>Medical Examination</th>
                     </tr>
                   </thead>
@@ -140,6 +140,11 @@
                       <td value="{{ i.HN }}">{{ i.HN }}</td>
                       <td value="{{ i.fname }}">{{ i.fname }}</td>
                       <td value="{{ i.lname }}">{{ i.lname }}</td>
+                      {% if i.gender == 0 %}
+                      <td value="{{ i.gender }}">Male</td>
+                      {% else %}
+                      <td value="{{ i.gender }}">Female</td>
+                      {% endif %}
                       <td><a href="/patients/patientinfo/?pid={{ i.pid }}"><i class="fas fa-search fa-sm"></i></a></td>
                     </tr>
                     {% endfor %}
