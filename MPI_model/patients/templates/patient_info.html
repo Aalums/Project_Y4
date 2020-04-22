@@ -46,7 +46,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients/addpatient">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Add Patient</span></a>
       </li>
@@ -55,7 +55,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Patient List</span></a>
       </li>
@@ -122,34 +122,51 @@
               <h6 class="m-0 font-weight-bold text-primary">Patient Information</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
+
+              <div class="form-group row">
+                <div class="col-sm-11">
                   HN : {{ patient.HN }}<br>
                   Name : {{ patient.fname }} {{ patient.lname }}<br>
-                  Gender : {{ patient.gender }}<br><br>
+                  Gender :
+                  {% if patient.gender == 0 %} Male
+                  {% else %} Female
+                  {% endif %}
+                </div>
+                <!-- Add info btn -->
+                <div class="col-sm-1">
+                  <a href="" class="btn btn-primary btn-circle .btn-lg">
+                    <i class="fas fa-plus" style="color:white"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Date</th>
+                      <th>Age</th>
                       <th>BMI</th>
                       <th>DM</th>
                       <th>HT</th>
                       <th>DLP</th>
                       <th>CKD</th>
-                      <th>CAG</th>
+                      <!-- <th>CAG</th> -->
                       <th>Predict</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for i in patient_info %}
                     <tr>
-                      <td value="{{ i.cha_date }}">{{ i.cha_date }}</td>
+                      <td value="{{ i.cha_date }}">{{ i.date }}</td>
                       <td value="{{ i.age }}">{{ i.age }}</td>
-                      <td value="{{ i.bmi }}">{{ i.bmi }}</td>
-                      <td value="{{ i.dm }}">{{ i.dm }}</td>
-                      <td value="{{ i.ht }}">{{ i.ht }}</td>
-                      <th value="{{ i.dlp }}">{{ i.dlp }}</th>
-                      <th value="{{ i.ckd }}">{{ i.ckd }}</th>
-                      <th><a href=""><i class="fas fa-search fa-sm"></i></a></th>
+                      <td value="{{ i.bmi }}">{{ i.BMI }}</td>
+                      <td value="{{ i.dm }}">{{ i.DM }}</td>
+                      <td value="{{ i.ht }}">{{ i.HT }}</td>
+                      <td value="{{ i.dlp }}">{{ i.DLP }}</td>
+                      <td value="{{ i.ckd }}">{{ i.CKD }}</td>
+                      <!-- <td value="{{ i.ckd }}">{{ i.CAG }}</td> -->
+                      <td><a href=""><i class="fas fa-sitemap"></i></a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
