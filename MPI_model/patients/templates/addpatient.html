@@ -122,16 +122,18 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Enter Patient Information</h1>
                     </div>
-                    <form class="user" method="post" action="patients:patient_info">
+
+                    <form class="user" method="post" action="">
+                      {% csrf_token %}
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           HN-Number : 
                           <input type="text" class="form-control form-control-user" id="HN" placeholder="HN Number" name="HN_number">
                         </div> 
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             Date :
                             <input class="form-control form-control-user" type="date" value="2020-04-05" id="date" name="date">   
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -147,9 +149,9 @@
                       </div>
                       <br>
                       <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                           Age : <input type="number" id="age" name="quantity" min="1" max="100" name="age">
-                        </div>
+                        </div> -->
                         <div class="col-sm-6">
                           Gender :
                           <input type="radio" id="male" name="gender" value="male"><label for="male">Male</label>
@@ -186,7 +188,7 @@
                       </div>
                       <br> -->
   
-                      <input type="submit" name="" value="Save" class="btn btn-primary btn-user btn-block">
+                      <a href="/patients/patientinfo/"></a><input type="submit" name="" value="Save" class="btn btn-primary btn-user btn-block"></a>
                       <!-- <a href="login.html" class="btn btn-primary btn-user btn-block"> Save </a> -->
                     </form>
                   
