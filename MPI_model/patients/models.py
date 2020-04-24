@@ -34,4 +34,5 @@ class patient_info(models.Model):
     RCACAG = models.IntegerField(default=0)
     LVEF = models.IntegerField(default=0)
     # CAG = models.IntegerField(default=0)
+    # CAG_confirm = models.IntegerField(default=0)
     pid = models.ForeignKey(patients, on_delete=models.CASCADE)

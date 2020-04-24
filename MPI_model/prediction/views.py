@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from patients.models import patients, patient_info
 
 # Create your views here.
 def prediction(request):
-    header_str = 'Hello'
-    template = loader.get_template('prediction.html')
+    print(request)
+    no = int(request.GET.get('no'))
+    patient_id = patients.objects.filter(patient_info__no = no)[0].pid
+    print("No = " + str(no))
+    print("pid = " + str(patient_id))
     context = {
-        'var1': header_str
+        'patient': patients.objects.get(pid = patient_id),
+        'patient_info': patient_info.objects.get(no = no)
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'prediction.html', context)
+

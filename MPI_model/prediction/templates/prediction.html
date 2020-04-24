@@ -46,7 +46,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients/addpatient">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Add Patient</span></a>
       </li>
@@ -55,7 +55,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/patients">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Patient List</span></a>
       </li>
@@ -118,31 +118,31 @@
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Patient Information</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Test Result</h1>
                   </div>
 
                   <form class="user">
-
+                    
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        HN :
+                        HN : {{ patient.HN }}
                         <!-- <input type="text" class="form-control form-control-user" id="HN"
                           placeholder="HN Number"> -->
                       </div>
                       <div class="col-sm-6">
-                        Date :
+                        Date : {{ patient_info.date }}
                           <!-- <input class="form-control form-control-user" type="date" value="2020-04-05" id="date"> -->
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        First Name :
+                        First Name : {{ patient.fname }}
                         <!-- <input type="text" class="form-control form-control-user" id="firstName"
                           placeholder="First Name"> -->
                       </div>
                       <div class="col-sm-6">
-                        Last Name :
+                        Last Name : {{ patient.lname }}
                         <!-- <input type="text" class="form-control form-control-user" id="lastName"
                           placeholder="Last Name"> -->
                       </div>
@@ -150,26 +150,42 @@
 
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        Age : 
-                        <!-- <input type="number" id="quantity" name="quantity" min="1" max="100"> -->
+                        Gender :  {% if patient.gender == 0 %} Male
+                                  {% else %} Female
+                                  {% endif %}
                       </div>
                       <div class="col-sm-6">
-                        Gender : Female
+                        Age : {{ patient_info.age }}
+                        <!-- <input type="number" id="quantity" name="quantity" min="1" max="100"> -->
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        BMI : {{ patient_info.BMI }}
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <div class="col-sm-3 mb-3 mb-sm-0">
-                        DM : Positive
+                        DM :  {% if patient_info.DM == 0 %} Negative
+                              {% else %} Positive
+                              {% endif %}
                       </div>
                       <div class="col-sm-3">
-                        HT : Positive
+                        HT :  {% if patient_info.HT == 0 %} Negative
+                              {% else %} Positive
+                              {% endif %}
                       </div>
                       <div class="col-sm-3">
-                        DLP : Positive
+                        DLP : {% if patient_info.DLP == 0 %} Negative
+                              {% else %} Positive
+                              {% endif %}
                       </div>
                       <div class="col-sm-3">
-                        CKD : Positive
+                        CKD : {% if patient_info.CKD == 0 %} Negative
+                              {% else %} Positive
+                              {% endif %}
                       </div>
                     </div>
 
