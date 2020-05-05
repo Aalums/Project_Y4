@@ -119,7 +119,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Patient Information</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Medical History</h6>
             </div>
             <div class="card-body">
 
@@ -151,8 +151,8 @@
                       <th>HT</th>
                       <th>DLP</th>
                       <th>CKD</th>
-                      <!-- <th>CAG</th> -->
-                      <th>Predict</th>
+                      <th>CAG</th>
+                      <th>Examination Result</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -161,12 +161,39 @@
                       <td value="{{ i.cha_date }}">{{ i.date }}</td>
                       <td value="{{ i.age }}">{{ i.age }}</td>
                       <td value="{{ i.bmi }}">{{ i.BMI }}</td>
-                      <td value="{{ i.dm }}">{{ i.DM }}</td>
-                      <td value="{{ i.ht }}">{{ i.HT }}</td>
-                      <td value="{{ i.dlp }}">{{ i.DLP }}</td>
-                      <td value="{{ i.ckd }}">{{ i.CKD }}</td>
-                      <!-- <td value="{{ i.ckd }}">{{ i.CAG }}</td> -->
-                      <td><a href="/prediction?no={{ i.no }}"><i class="fas fa-sitemap"></i></a></td>
+                      <td value="{{ i.dm }}">
+                        {% if i.DM == 0 %} Negative
+                        {% else %} Positive
+                        {% endif %}
+                      </td>
+                      <td value="{{ i.ht }}">
+                        {% if i.HT == 0 %} Negative
+                        {% else %} Positive
+                        {% endif %}
+                      </td>
+                      <td value="{{ i.dlp }}">
+                        {% if i.DLP == 0 %} Negative
+                        {% else %} Positive
+                        {% endif %}
+                      </td>
+                      <td value="{{ i.ckd }}">
+                        {% if i.CKD == 0 %} Negative
+                        {% else %} Positive
+                        {% endif %}
+                      </td>
+                      <!-- <td value="{{ i.ckd }}">
+                        {% if i.CAG == 0 %} Negative
+                        {% else %} Positive
+                        {% endif %}
+                      </td> -->
+                      <td value="{{ 1 }}">Negative</td>
+                      <td>
+                        <a href="/prediction?no={{ i.no }}">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-sitemap"></i>
+                          </button>
+                        </a>
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>

@@ -37,7 +37,7 @@ def patientInfo(request):
     patient_id = int(request.GET.get('pid'))
     print("pid = " + str(patient_id))
     context = {
-        'patient': patients.objects.filter(pid = patient_id).first(),
+        'patient': patients.objects.get(pid = patient_id),
         'patient_info': list(patient_info.objects.filter(pid = patient_id))
     }        
     return render(request, 'patient_info.html', context)

@@ -142,7 +142,7 @@
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Gender</th>
-                      <th>Medical Examination</th>
+                      <th>Medical History</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,12 +151,18 @@
                       <td value="{{ i.HN }}">{{ i.HN }}</td>
                       <td value="{{ i.fname }}">{{ i.fname }}</td>
                       <td value="{{ i.lname }}">{{ i.lname }}</td>
-                      {% if i.gender == 0 %}
-                      <td value="{{ i.gender }}">Male</td>
-                      {% else %}
-                      <td value="{{ i.gender }}">Female</td>
-                      {% endif %}
-                      <td><a href="/patients/patientinfo/?pid={{ i.pid }}"><i class="fas fa-book-medical"></i></a></td>
+                      <td value="{{ i.gender }}">
+                        {% if i.gender == 0 %} Male
+                        {% else %} Female
+                        {% endif %}
+                      </td>
+                      <td>
+                        <a href="/patients/patientinfo/?pid={{ i.pid }}">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-book-medical"></i>
+                          </button>
+                        </a>
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>
