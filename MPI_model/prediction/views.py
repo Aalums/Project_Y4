@@ -16,3 +16,9 @@ def prediction(request):
     }
     return render(request, 'prediction.html', context)
 
+def addPredict(request):
+    context = {
+        
+    }
+    return render(request, 'addprediction.html', context)
+

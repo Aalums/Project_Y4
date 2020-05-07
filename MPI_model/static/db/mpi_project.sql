@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2020 at 04:09 PM
+-- Generation Time: May 07, 2020 at 09:55 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -152,8 +152,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-15 09:27:15.617939', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
-(2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-04-15 09:25:51.408994', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000');
+(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-22 13:43:19.880652', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
+(2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-05-07 07:04:01.263335', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000');
 
 -- --------------------------------------------------------
 
@@ -285,7 +285,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (29, 'patients', '0005_auto_20200420_1625', '2020-04-20 09:25:22.066620'),
 (30, 'patients', '0006_auto_20200420_1659', '2020-04-20 09:59:10.474131'),
 (31, 'patients', '0006_auto_20200421_2106', '2020-04-21 14:06:55.582245'),
-(32, 'patients', '0007_patient_info', '2020-04-21 14:07:57.701216');
+(32, 'patients', '0007_patient_info', '2020-04-21 14:07:57.701216'),
+(33, 'patients', '0008_auto_20200507_1454', '2020-05-07 07:54:40.622738');
 
 -- --------------------------------------------------------
 
@@ -304,7 +305,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('qh8joavf9irl7qsphlspn67y02zdt2sh', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-29 09:27:15.623923'),
+('ol7mov6yus0kj8xtknzssckwmpfbismf', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-05-06 13:43:19.989870'),
+('pm0fdr4izp2cvp0fme93sibxlw3lpnil', 'OWI1NGIzMjg2MTg4YmJmYWIxNWFmYmE0NGM0M2U4YTlkOGRhMTBjNTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZTlhODY4NzQ5NmEyMTBjMmNjYmJmODhhYTkyMTE4Y2M5ZTU4YjI4In0=', '2020-05-21 07:04:01.277293'),
 ('xpzu1rj011zc1d9im7pwok7tn6auwhew', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-21 15:49:14.352200');
 
 -- --------------------------------------------------------
@@ -320,6 +322,13 @@ CREATE TABLE `patients_patients` (
   `lname` varchar(30) NOT NULL,
   `gender` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patients_patients`
+--
+
+INSERT INTO `patients_patients` (`pid`, `HN`, `fname`, `lname`, `gender`) VALUES
+(1, 'PH-12345', 'Hataichanok', 'Sakkara', 1);
 
 -- --------------------------------------------------------
 
@@ -349,7 +358,9 @@ CREATE TABLE `patients_patient_info` (
   `RCAwallmotion` decimal(20,2) NOT NULL,
   `RCACAG` int(11) NOT NULL,
   `LVEF` int(11) NOT NULL,
-  `pid_id` int(11) NOT NULL
+  `pid_id` int(11) NOT NULL,
+  `CAG` int(11) NOT NULL,
+  `CAG_confirm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -510,7 +521,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `patients_patients`
