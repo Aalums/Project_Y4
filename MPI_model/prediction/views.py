@@ -44,8 +44,11 @@ def prediction(request):
         return render(request, 'prediction.html', context)
 
 def addPredict(request):
+    print(request)
+    patient_id =  int(request.GET.get('pid'))
+    print("pid = " + str(patient_id))
     context = {
-        
+        'patient': patients.objects.get(pid = patient_id)
     }
     return render(request, 'addprediction.html', context)
 
