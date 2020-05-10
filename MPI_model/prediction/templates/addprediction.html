@@ -132,12 +132,12 @@
                       <div class="col-sm-6 mb-3 mb-sm-0">
                         HN : {{ patient.HN }}
                       </div>
-                      <div class="col-sm-1">
+                      <!-- <div class="col-sm-1">
                         Date :
                       </div>
                       <div class="col-sm-5">
                         <input class="form-control" type="date" value="mm/dd/yyyy" name="date" id="date">
-                      </div>
+                      </div> -->
                     </div>
 
                     <div class="form-group row">
@@ -177,30 +177,30 @@
                         <tbody>
                           <tr>
                             <td>
-                              <input class="form-control" type="number" id="bmi" name="bmi">
+                              <input class="form-control" type="number" step="0.01" id="bmi" name="bmi">
                             </td>
                             <td>
                               <select class="form-control" name="dm">
-                                <option>Negative</option>
-                                <option>Positive</option>
+                                <option value="0">Negative</option>
+                                <option value="1">Positive</option>
                               </select>
                             </td>
                             <td>
                               <select class="form-control" name="ht">
-                                <option>Negative</option>
-                                <option>Positive</option>
+                                <option value="0">Negative</option>
+                                <option value="1">Positive</option>
                               </select>
                             </td>
                             <td>
                               <select class="form-control" name="dlp">
-                                <option>Negative</option>
-                                <option>Positive</option>
+                                <option value="0">Negative</option>
+                                <option value="1">Positive</option>
                               </select>
                             </td>
                             <td>
                               <select class="form-control" name="ckd">
-                                <option>Negative</option>
-                                <option>Positive</option>
+                                <option value="0">Negative</option>
+                                <option value="1">Positive</option>
                               </select>
                             </td>
                           </tr>
@@ -226,21 +226,21 @@
                         <tbody>
                           <tr>
                             <td>LAD</td>
-                            <td><input class="form-control" type="number" id="lad_4dmspect" name="lad_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="lad_wallthick" name="lad_wallthick"></td>
-                            <td><input class="form-control" type="number" id="lad_wallmotion" name="lad_wallmotion"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lad_4dmspect" name="lad_4dmspect"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lad_wallthick" name="lad_wallthick"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lad_wallmotion" name="lad_wallmotion"></td>
                           </tr>
                           <tr>
                             <td>LCX</td>
-                            <td><input class="form-control" type="number" id="lcx_4dmspect" name="lcx_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="lcx_wallthick" name="lcx_wallthick"></td>
-                            <td><input class="form-control" type="number" id="lcx_wallmotion" name="lcx_wallmotion"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lcx_4dmspect" name="lcx_4dmspect"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lcx_wallthick" name="lcx_wallthick"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="lcx_wallmotion" name="lcx_wallmotion"></td>
                           </tr>
                           <tr>
                             <td>RCA</td>
-                            <td><input class="form-control" type="number" id="rca_4dmspect" name="rca_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="rca_wallthick" name="rca_wallthick"></td>
-                            <td><input class="form-control" type="number" id="rca_wallmotion" name="rca_wallmotion"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="rca_4dmspect" name="rca_4dmspect"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="rca_wallthick" name="rca_wallthick"></td>
+                            <td><input class="form-control" type="number" step="0.01" id="rca_wallmotion" name="rca_wallmotion"></td>
                           </tr>
                         </tbody>
                       </table>
@@ -257,7 +257,9 @@
                     
                     <!-- Button -->
                     <br>
-                    <input class="btn btn-primary btn-user btn-block" type="submit" value="Predict">
+                    <a href="/prediction?pid={{ patient.pid }}">
+                      <input class="btn btn-primary btn-user btn-block" type="submit" value="Predict">
+                    </a>
 
                   </form>
 
