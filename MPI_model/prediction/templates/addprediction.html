@@ -125,9 +125,9 @@
                     <h5 class="m-0 font-weight-bold text-gray-900 mb-4">Patient Characteristic</h5>
                   </div>
 
-                  <form class="user" method="post" action="">
+                  <form class="user" method="post" action="{% url 'prediction:predict_process' %}">
                     {% csrf_token %}
-
+                    <input type="hidden" value="{{patient.pid}}" name="pid">
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
                         HN : {{ patient.HN }}
@@ -226,21 +226,21 @@
                         <tbody>
                           <tr>
                             <td>LAD</td>
-                            <td><input class="form-control" type="number" id="lad_4dmspect" name="lad_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="lad_wallthick" name="lad_wallthick"></td>
-                            <td><input class="form-control" type="number" id="lad_wallmotion" name="lad_wallmotion"></td>
+                            <td><input class="form-control" type="number" id="lad_4dmspect" name="lad_4dmspect" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="lad_wallthick" name="lad_wallthick" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="lad_wallmotion" name="lad_wallmotion" step="0.01"></td>
                           </tr>
                           <tr>
                             <td>LCX</td>
-                            <td><input class="form-control" type="number" id="lcx_4dmspect" name="lcx_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="lcx_wallthick" name="lcx_wallthick"></td>
-                            <td><input class="form-control" type="number" id="lcx_wallmotion" name="lcx_wallmotion"></td>
+                            <td><input class="form-control" type="number" id="lcx_4dmspect" name="lcx_4dmspect" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="lcx_wallthick" name="lcx_wallthick" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="lcx_wallmotion" name="lcx_wallmotion" step="0.01"></td>
                           </tr>
                           <tr>
                             <td>RCA</td>
-                            <td><input class="form-control" type="number" id="rca_4dmspect" name="rca_4dmspect"></td>
-                            <td><input class="form-control" type="number" id="rca_wallthick" name="rca_wallthick"></td>
-                            <td><input class="form-control" type="number" id="rca_wallmotion" name="rca_wallmotion"></td>
+                            <td><input class="form-control" type="number" id="rca_4dmspect" name="rca_4dmspect" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="rca_wallthick" name="rca_wallthick" step="0.01"></td>
+                            <td><input class="form-control" type="number" id="rca_wallmotion" name="rca_wallmotion" step="0.01"></td>
                           </tr>
                         </tbody>
                       </table>

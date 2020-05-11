@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from patients.models import patients, patient_info
+import pickle
 
-# Create your views here.
 def prediction(request):
     if request.method == 'POST':
         print(request)
@@ -51,4 +51,43 @@ def addPredict(request):
         'patient': patients.objects.get(pid = patient_id)
     }
     return render(request, 'addprediction.html', context)
+
+def predict(request):
+    data = []
+    p_info = patient_info()
+
+    if(request.method == 'POST'):
+        pid = request.POST.get('pid')
+        
+        #patients characteristic
+        date = request.POST.get('date')
+        print(date)
+        age = int(request.POST.get('age'))
+        bmi = int(request.POST.get('bmi'))
+        dm = 0 if request.POST.get('dm') == 'Negative' else 1
+        ht = 0 if request.POST.get('ht') == 'Negative' else 1
+        dlp = 0 if request.POST.get('dlp') == 'Negative' else 1
+        ckd = 0 if request.POST.get('ckd') == 'Negative' else 1
+
+        #MPI feature 
+        #LAD
+        lad_4dmspect = float(request.POST.get('lad_4dmspect'))
+        lad_wallthick = float(request.POST.get('lad_wallthick'))
+        lad_wallmotion = float(request.POST.get('lad_wallmotion'))
+
+        #LCX
+        lcx_4dmspect = float(request.POST.get('lcx_4dmspect'))
+        lcx_wallthick = float(request.POST.get('lcx_wallthick'))
+        lcx_wallmotion = float(request.POST.get('lcx_wallmotion'))
+        
+        #RCA
+        rca_4dmspect = float(request.POST.get('rca_4dmspect'))
+        rca_wallthick = float(request.POST.get('rca_wallthick'))
+        rca_wallmotion = float(request.POST.get('rca_wallmotion'))
+        
+        lvef = int(request.POST.get('lvef'))
+        #model
+        model = pickle.load(open("static/model/model_mpi", "rb"))
+        print(model)
+    return render(request, 'predict.html')
 
