@@ -83,34 +83,39 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <!-- Main Content -->
+      <div id="content">
 
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Account -->
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor Name</span>
-              <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-            </a>
-            <!-- Dropdown -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <!-- Account -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor Name</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
-            </div>
-          </li>
+              <!-- Dropdown -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'accounts:logout' %}" data-toggle="modal"
+                  data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+            {% endif %}
 
-        </ul>
+          </ul>
 
-      </nav>
-      <!-- End of Topbar -->
+        </nav>
+        <!-- End of Topbar -->
 
-      <!-- start form add patients -->
+        <!-- start form add patients -->
         <div class="container">
           <div class="card o-hidden border-0 shadow-lg">
             <div class="card-body p-0">
@@ -118,7 +123,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="p-5">
-                    
+
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Enter Patient Information</h1>
                     </div>
@@ -127,9 +132,10 @@
                       {% csrf_token %}
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          HN-Number : 
-                          <input type="text" class="form-control form-control-user" id="HN" placeholder="HN Number" name="HN_number">
-                        </div> 
+                          HN-Number :
+                          <input type="text" class="form-control form-control-user" id="HN" placeholder="HN Number"
+                            name="HN_number">
+                        </div>
                         <!-- <div class="col-sm-6">
                             Date :
                             <input class="form-control form-control-user" type="date" value="2020-04-05" id="date" name="date">   
@@ -137,12 +143,12 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          First Name : 
+                          First Name :
                           <input type="text" class="form-control form-control-user" id="firstName" name="firstName"
                             placeholder="First Name">
                         </div>
                         <div class="col-sm-6">
-                          Last Name : 
+                          Last Name :
                           <input type="text" class="form-control form-control-user" id="lastName" name="lastName"
                             placeholder="Last Name">
                         </div>
@@ -154,12 +160,14 @@
                         </div> -->
                         <div class="col-sm-6">
                           Gender :
-                          <input class="ml-3" type="radio" id="male" name="gender" value="male"><label for="male">Male</label>
-                          <input class="ml-3" type="radio" id="female" name="gender" value="female"><label for="female">Female</label>
+                          <input class="ml-3" type="radio" id="male" name="gender" value="male"><label
+                            for="male">Male</label>
+                          <input class="ml-3" type="radio" id="female" name="gender" value="female"><label
+                            for="female">Female</label>
                         </div>
                       </div>
                       <br>
-  
+
                       <!-- <div class="col-sm-6">
                         DM :
                         <input type="radio" id="DM0" name="DM" value="0"><label for="DM0">Negative</label>
@@ -187,11 +195,12 @@
                         <input type="radio" id="CKD1" name="CKD" value="1"><label for="CKD1">Positive</label>
                       </div>
                       <br> -->
-  
-                      <a href="patients:patientinfo"><input type="submit" name="" value="Save" class="btn btn-primary btn-user btn-block"></a>
+
+                      <a href="patients:patientinfo"><input type="submit" name="" value="Save"
+                          class="btn btn-primary btn-user btn-block"></a>
                       <!-- <a href="login.html" class="btn btn-primary btn-user btn-block"> Save </a> -->
                     </form>
-                  
+
                   </div>
                 </div>
               </div>
@@ -199,8 +208,32 @@
           </div>
         </div>
 
-    </div>
+      </div>
+      <!-- End of Main Content -->
 
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="{% url 'accounts:logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->

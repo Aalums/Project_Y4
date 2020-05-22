@@ -83,48 +83,52 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <!-- Main Content -->
+      <div id="content">
 
-        <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Account -->
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor Name</span>
-              <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-            </a>
-            <!-- Dropdown -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <!-- Account -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Doctor Name</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
-            </div>
-          </li>
+              <!-- Dropdown -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'accounts:logout' %}" data-toggle="modal"
+                  data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+            {% endif %}
 
-        </ul>
+          </ul>
 
-      </nav>
-      <!-- End of Topbar -->
+        </nav>
+        <!-- End of Topbar -->
 
-      <div class="container">
-        <div class="card o-hidden border-0 shadow-lg">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 font-weight-bold text-gray-900 mb-4">Examination Result</h1>
-                  </div>
+        <div class="container">
+          <div class="card o-hidden border-0 shadow-lg">
+            <div class="card-body p-0">
+              <!-- Nested Row within Card Body -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h1 class="h4 font-weight-bold text-gray-900 mb-4">Examination Result</h1>
+                    </div>
 
-                  <div>
-                    <h5 class="m-0 font-weight-bold text-gray-900 mb-4">Patient Characteristic</h5>
-                  </div>
-
+                    <div>
+                      <h5 class="m-0 font-weight-bold text-gray-900 mb-4">Patient Characteristic</h5>
+                    </div>
                   <form class="user" method="post" action="{% url 'prediction:predict_process' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{patient.pid}}" name="pid">
@@ -138,120 +142,130 @@
                       <div class="col-sm-5">
                         <input class="form-control" type="date" value="mm/dd/yyyy" name="date" id="date">
                       </div> -->
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        First Name : {{ patient.fname }}
                       </div>
-                      <div class="col-sm-6">
-                        Last Name : {{ patient.lname }}
-                      </div>
-                    </div>
 
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        Gender : {% if patient.gender == 0 %} Male
-                        {% else %} Female
-                        {% endif %}
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          First Name : {{ patient.fname }}
+                        </div>
+                        <div class="col-sm-6">
+                          Last Name : {{ patient.lname }}
+                        </div>
                       </div>
-                      <div class="col-sm-1">
-                        Age :
+
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          Gender : {% if patient.gender == 0 %} Male
+                          {% else %} Female
+                          {% endif %}
+                        </div>
+                        <div class="col-sm-1">
+                          Age :
+                        </div>
+                        <div class="col-sm-1">
+                          <input class="form-control" type="number" id="age" name="age" min="1" max="100">
+                        </div>
                       </div>
-                      <div class="col-sm-1">
-                        <input class="form-control" type="number" id="age" name="age" min="1" max="100">
+
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>BMI</th>
+                              <th>DM</th>
+                              <th>HT</th>
+                              <th>DLP</th>
+                              <th>CKD</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <input class="form-control" type="number" step="0.01" id="bmi" name="bmi">
+                              </td>
+                              <td>
+                                <select class="form-control" name="dm">
+                                  <option value="0">Negative</option>
+                                  <option value="1">Positive</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-control" name="ht">
+                                  <option value="0">Negative</option>
+                                  <option value="1">Positive</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-control" name="dlp">
+                                  <option value="0">Negative</option>
+                                  <option value="1">Positive</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="form-control" name="ckd">
+                                  <option value="0">Negative</option>
+                                  <option value="1">Positive</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                    </div>
 
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th>BMI</th>
-                            <th>DM</th>
-                            <th>HT</th>
-                            <th>DLP</th>
-                            <th>CKD</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <input class="form-control" type="number" step="0.01" id="bmi" name="bmi">
-                            </td>
-                            <td>
-                              <select class="form-control" name="dm">
-                                <option value="0">Negative</option>
-                                <option value="1">Positive</option>
-                              </select>
-                            </td>
-                            <td>
-                              <select class="form-control" name="ht">
-                                <option value="0">Negative</option>
-                                <option value="1">Positive</option>
-                              </select>
-                            </td>
-                            <td>
-                              <select class="form-control" name="dlp">
-                                <option value="0">Negative</option>
-                                <option value="1">Positive</option>
-                              </select>
-                            </td>
-                            <td>
-                              <select class="form-control" name="ckd">
-                                <option value="0">Negative</option>
-                                <option value="1">Positive</option>
-                              </select>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <br>
-                    <div>
-                      <h5 class="m-0 font-weight-bold text-gray-900 mb-4">MPI features</h5>
-                    </div>
-
-                    <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th>4D-MSPECT</th>
-                            <th>Wall Thickness</th>
-                            <th>Wall Motion</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>LAD</td>
-                            <td><input class="form-control" type="number" step="0.01" id="lad_4dmspect" name="lad_4dmspect"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="lad_wallthick" name="lad_wallthick"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="lad_wallmotion" name="lad_wallmotion"></td>
-                          </tr>
-                          <tr>
-                            <td>LCX</td>
-                            <td><input class="form-control" type="number" step="0.01" id="lcx_4dmspect" name="lcx_4dmspect"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="lcx_wallthick" name="lcx_wallthick"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="lcx_wallmotion" name="lcx_wallmotion"></td>
-                          </tr>
-                          <tr>
-                            <td>RCA</td>
-                            <td><input class="form-control" type="number" step="0.01" id="rca_4dmspect" name="rca_4dmspect"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="rca_wallthick" name="rca_wallthick"></td>
-                            <td><input class="form-control" type="number" step="0.01" id="rca_wallmotion" name="rca_wallmotion"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-sm-1">
-                        LVEF :
+                      <br>
+                      <div>
+                        <h5 class="m-0 font-weight-bold text-gray-900 mb-4">MPI features</h5>
                       </div>
-                      <div class="col-sm-2">
-                        <input class="form-control" type="number" id="lvef" name="lvef" min="1" max="100">
+
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>4D-MSPECT</th>
+                              <th>Wall Thickness</th>
+                              <th>Wall Motion</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>LAD</td>
+                              <td><input class="form-control" type="number" step="0.01" id="lad_4dmspect"
+                                  name="lad_4dmspect"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="lad_wallthick"
+                                  name="lad_wallthick"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="lad_wallmotion"
+                                  name="lad_wallmotion"></td>
+                            </tr>
+                            <tr>
+                              <td>LCX</td>
+                              <td><input class="form-control" type="number" step="0.01" id="lcx_4dmspect"
+                                  name="lcx_4dmspect"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="lcx_wallthick"
+                                  name="lcx_wallthick"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="lcx_wallmotion"
+                                  name="lcx_wallmotion"></td>
+                            </tr>
+                            <tr>
+                              <td>RCA</td>
+                              <td><input class="form-control" type="number" step="0.01" id="rca_4dmspect"
+                                  name="rca_4dmspect"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="rca_wallthick"
+                                  name="rca_wallthick"></td>
+                              <td><input class="form-control" type="number" step="0.01" id="rca_wallmotion"
+                                  name="rca_wallmotion"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-1">
+                          LVEF :
+                        </div>
+                        <div class="col-sm-2">
+                          <input class="form-control" type="number" id="lvef" name="lvef" min="1" max="100">
+                        </div>
                       </div>
                     </div>
                     
@@ -261,17 +275,39 @@
                       <input class="btn btn-primary btn-user btn-block" type="submit" value="Predict">
                     </a>
 
-                  </form>
-
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
+      <!-- End of Main Content -->
 
     </div>
+    <!-- End of Content Wrapper -->
 
+  </div>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="{% url 'accounts:logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->
