@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
 from .models import patients, patient_info
+from accounts.models import user
 
 # Create your views here.
 def addpatient(request):
@@ -18,17 +19,17 @@ def addpatient(request):
         return HttpResponseRedirect('patientinfo/?pid='+str(pid))
     else : 
         print(request)
-        header_str = 'Hello'
         template = loader.get_template('addpatient.html')
         context = {
-            'var1': header_str
+            'user_login' : request.user.username
         }
         return HttpResponse(template.render(context, request))
 
 def patientList(request):
     print(request)
     context = {
-        'list_patient': list(patients.objects.all())
+        'list_patient': list(patients.objects.all()),
+        'user_login' : request.user.username
     }
     return render(request, 'patient_list.html', context)
 
@@ -38,6 +39,7 @@ def patientInfo(request):
     print("pid = " + str(patient_id))
     context = {
         'patient': patients.objects.get(pid = patient_id),
-        'patient_info': list(patient_info.objects.filter(pid = patient_id))
+        'patient_info': list(patient_info.objects.filter(pid = patient_id)),
+        'user_login' : request.user.username
     }        
     return render(request, 'patient_info.html', context)

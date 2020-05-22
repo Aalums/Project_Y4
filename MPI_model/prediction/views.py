@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.template import loader
 from patients.models import patients, patient_info
 import pickle
-import pandas as pd
+# import pandas as pd
 
 def prediction(request):
     if request.method == 'POST':
@@ -21,7 +21,8 @@ def prediction(request):
                 patient_info.objects.filter(no = no).update(CAG_confirm = CAG_confirm)
             context = {
             'patient': patients.objects.get(pid = patient_id),
-            'patient_info': patient_info.objects.get(no = no)
+            'patient_info': patient_info.objects.get(no = no),
+            'user_login' : request.user.username
             }
             return render(request, 'prediction.html', context)
         else :
@@ -29,7 +30,8 @@ def prediction(request):
             patient_info.objects.filter(no = no).delete()
             context = {
                 'patient': patients.objects.get(pid = patient_id),
-                'patient_info': list(patient_info.objects.filter(pid = patient_id))
+                'patient_info': list(patient_info.objects.filter(pid = patient_id)),
+                'user_login' : request.user.username
             }
             return render(request, 'patient_info.html', context)
 
@@ -41,7 +43,8 @@ def prediction(request):
         print("pid = " + str(patient_id))
         context = {
             'patient': patients.objects.get(pid = patient_id),
-            'patient_info': patient_info.objects.get(no = no)
+            'patient_info': patient_info.objects.get(no = no),
+            'user_login' : request.user.username
         }
         return render(request, 'prediction.html', context)
 
@@ -78,7 +81,8 @@ def addPredict(request):
         patient_id =  int(request.GET.get('pid'))
         print("pid = " + str(patient_id))
         context = {
-            'patient': patients.objects.get(pid = patient_id)
+            'patient': patients.objects.get(pid = patient_id),
+            'user_login' : request.user.username
         }
         return render(request, 'addprediction.html', context)
 
