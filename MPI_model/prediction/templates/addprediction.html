@@ -132,6 +132,7 @@
                   <form class="user" method="post" action="{% url 'prediction:predict_process' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{patient.pid}}" name="pid">
+                    <input type="hidden" value="0" name="CAG">
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
                         HN : {{ patient.HN }}

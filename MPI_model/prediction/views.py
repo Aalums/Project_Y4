@@ -67,6 +67,7 @@ def addPredict(request):
         patientInfo.RCAwallthick = request.POST.get('rca_wallthick')
         patientInfo.RCAwallmotion = request.POST.get('rca_wallmotion')
         patientInfo.LVEF = request.POST.get('lvef')
+        patientInfo.CAG = request.POST.get('CAG')
         patientInfo.pid = patients.objects.get(pid = patient_id)
         patientInfo.save()
         
@@ -82,6 +83,7 @@ def addPredict(request):
         return render(request, 'addprediction.html', context)
 
 def predict(request):
+    ls_data = [1]
     if(request.method == 'POST'):
         pid = request.POST.get('pid')
         #MPI feature 
@@ -100,15 +102,26 @@ def predict(request):
         rca_wallthick = float(request.POST.get('rca_wallthick'))
         rca_wallmotion = float(request.POST.get('rca_wallmotion'))
         
-        lvef = int(request.POST.get('lvef'))
+        lvef = float(request.POST.get('lvef'))
+        
         #model
-        data = {'LAD4dmspect': [lad_4dmspect], 'LADWallthick': [lad_wallthick], 'LADWallmotion':[lad_wallmotion], 'LCX4dmspect': [lcx_4dmspect], 'LCXWallthick': [lcx_wallthick] , 'LCXWallmotion': [lcx_wallmotion], 'RCA4dmspect': [rca_4dmspect], 'RCAWallthick': [rca_wallthick], 'RCAWallmotion': [rca_wallmotion], 'LVEF': [lvef]}
+        data = [lad_4dmspect, lad_wallthick, lad_wallmotion, lcx_4dmspect, lcx_wallthick, lcx_wallmotion, rca_4dmspect, rca_wallthick, rca_wallmotion, lvef]
+        ls_data[0] = data
+        
+        #load model
         file_d = open("static/model/model_mpi", "rb")
         model = pickle.load(file_d)
-        df = pd.DataFrame(data)
-        print(df)
-        print(model)
-        result = model.predict(df.as_matrix())
+        print("data :", ls_data)
+
+        #predict
+        result = model.predict(ls_data)
+        print("result CAG : ", result[0])
+        
+        #update request
+        post = request.POST.copy() # to make it mutable
+        post['CAG'] = str(result[0])
+        request.POST = post
+
         file_d.close
         addPredict(request)
         no = int(patient_info.objects.latest('no').no)
