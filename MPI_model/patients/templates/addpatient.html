@@ -130,75 +130,61 @@
 
                     <form class="user" method="post" action="">
                       {% csrf_token %}
+
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           HN-Number :
-                          <input type="text" class="form-control form-control-user" id="HN" placeholder="HN Number"
-                            name="HN_number">
+                          <input type="text" class="form-control form-control-user" id="HN" name="HN_number" required>
                         </div>
-                        <!-- <div class="col-sm-6">
-                            Date :
-                            <input class="form-control form-control-user" type="date" value="2020-04-05" id="date" name="date">   
-                        </div> -->
                       </div>
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                           First Name :
-                          <input type="text" class="form-control form-control-user" id="firstName" name="firstName"
-                            placeholder="First Name">
+                          <input type="text" class="form-control form-control-user" id="firstName" name="firstName" required>
                         </div>
                         <div class="col-sm-6">
                           Last Name :
-                          <input type="text" class="form-control form-control-user" id="lastName" name="lastName"
-                            placeholder="Last Name">
+                          <input type="text" class="form-control form-control-user" id="lastName" name="lastName" required>
                         </div>
                       </div>
                       <br>
                       <div class="form-group row">
-                        <!-- <div class="col-sm-6 mb-3 mb-sm-0">
-                          Age : <input type="number" id="age" name="quantity" min="1" max="100" name="age">
-                        </div> -->
                         <div class="col-sm-6">
                           Gender :
-                          <input class="ml-3" type="radio" id="male" name="gender" value="male"><label
-                            for="male">Male</label>
-                          <input class="ml-3" type="radio" id="female" name="gender" value="female"><label
-                            for="female">Female</label>
+                          <input class="ml-3" type="radio" id="male" name="gender" value="male">
+                          <label for="male">Male</label>
+                          <input class="ml-3" type="radio" id="female" name="gender" value="female">
+                          <label for="female">Female</label>
                         </div>
                       </div>
                       <br>
 
-                      <!-- <div class="col-sm-6">
-                        DM :
-                        <input type="radio" id="DM0" name="DM" value="0"><label for="DM0">Negative</label>
-                        <input type="radio" id="DM1" name="DM" value="1"><label for="DM1">Positive</label>
-                      </div>
-                      <br>
-  
-                      <div class="col-sm-6">
-                        HT :
-                        <input type="radio" id="HT0" name="HT" value="0"><label for="HT0">Negative</label>
-                        <input type="radio" id="HT1" name="HT" value="1"><label for="HT1">Positive</label>
-                      </div>
-                      <br>
-  
-                      <div class="col-sm-6">
-                        DLP :
-                        <input type="radio" id="DLP0" name="DLP" value="0"><label for="DLP0">Negative</label>
-                        <input type="radio" id="DLP1" name="DLP" value="1"><label for="DLP1">Positive</label>
-                      </div>
-                      <br>
-  
-                      <div class="col-sm-6">
-                        CKD :
-                        <input type="radio" id="CKD0" name="CKD" value="0"><label for="CKD0">Negative</label>
-                        <input type="radio" id="CKD1" name="CKD" value="1"><label for="CKD1">Positive</label>
-                      </div>
-                      <br> -->
+                      <a href="patients:patientinfo" data-toggle="modal" data-target="#addPatientModal">
+                        <input type="submit" name="" value="Save" class="btn btn-primary btn-user btn-block">
+                      </a>
 
-                      <a href="patients:patientinfo"><input type="submit" name="" value="Save"
-                          class="btn btn-primary btn-user btn-block"></a>
-                      <!-- <a href="login.html" class="btn btn-primary btn-user btn-block"> Save </a> -->
+                      <!-- Add Patient Modal-->
+                      <div class="modal fade" id="addPatientModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Do you want to add this patient?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Select "Save" below if you are want to add patient.</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <a href="patients:patientinfo">
+                                <input type="submit" name="" value="Save" class="btn btn-primary">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </form>
 
                   </div>

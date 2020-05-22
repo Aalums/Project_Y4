@@ -129,15 +129,17 @@
                     <div>
                       <h5 class="m-0 font-weight-bold text-gray-900 mb-4">Patient Characteristic</h5>
                     </div>
-                  <form class="user" method="post" action="{% url 'prediction:predict_process' %}">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{patient.pid}}" name="pid">
-                    <input type="hidden" value="0" name="CAG">
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        HN : {{ patient.HN }}
-                      </div>
-                      <!-- <div class="col-sm-1">
+
+                    <form class="user" method="post" action="{% url 'prediction:predict_process' %}">
+                      {% csrf_token %}
+
+                      <input type="hidden" value="{{patient.pid}}" name="pid">
+                      <input type="hidden" value="0" name="CAG">
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          HN : {{ patient.HN }}
+                        </div>
+                        <!-- <div class="col-sm-1">
                         Date :
                       </div>
                       <div class="col-sm-5">
@@ -268,28 +270,49 @@
                           <input class="form-control" type="number" id="lvef" name="lvef" min="1" max="100">
                         </div>
                       </div>
-                    </div>
-                    
-                    <!-- Button -->
-                    <br>
-                    <a>
-                      <input class="btn btn-primary btn-user btn-block" type="submit" value="Predict">
-                    </a>
 
+                      <!-- Button -->
+                      <br>
+                      <a data-toggle="modal" data-target="#addPredictionModal">
+                        <input class="btn btn-primary btn-user btn-block" type="submit" value="Predict">
+                      </a>
+
+                      <!-- Add Patient Modal-->
+                      <div class="modal fade" id="addPredictionModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Do you want to predict this patient?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Select "Predict" below if you are want to predict this patient.</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <a href="patients:patientinfo">
+                                <input type="submit" name="" value="Predict" class="btn btn-primary">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-      <!-- End of Main Content -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Main Content -->
 
   </div>
+  <!-- End of Content Wrapper -->
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
