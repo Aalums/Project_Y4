@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.template import loader
 from patients.models import patients, patient_info
 import pickle
+import pandas as pd
 
 def prediction(request):
     if request.method == 'POST':
@@ -46,7 +48,7 @@ def prediction(request):
 def addPredict(request):
     if request.method == 'POST':
         print(request)
-        patient_id =  int(request.GET.get('pid'))
+        patient_id =  int(request.POST.get('pid'))
         print("Add Info pid = " + str(patient_id))
         patientInfo = patient_info()
         patientInfo.age = request.POST.get('age')
@@ -80,22 +82,8 @@ def addPredict(request):
         return render(request, 'addprediction.html', context)
 
 def predict(request):
-    data = []
-    p_info = patient_info()
-
     if(request.method == 'POST'):
         pid = request.POST.get('pid')
-        
-        #patients characteristic
-        date = request.POST.get('date')
-        print(date)
-        age = int(request.POST.get('age'))
-        bmi = int(request.POST.get('bmi'))
-        dm = 0 if request.POST.get('dm') == 'Negative' else 1
-        ht = 0 if request.POST.get('ht') == 'Negative' else 1
-        dlp = 0 if request.POST.get('dlp') == 'Negative' else 1
-        ckd = 0 if request.POST.get('ckd') == 'Negative' else 1
-
         #MPI feature 
         #LAD
         lad_4dmspect = float(request.POST.get('lad_4dmspect'))
@@ -114,7 +102,15 @@ def predict(request):
         
         lvef = int(request.POST.get('lvef'))
         #model
-        model = pickle.load(open("static/model/model_mpi", "rb"))
+        data = {'LAD4dmspect': [lad_4dmspect], 'LADWallthick': [lad_wallthick], 'LADWallmotion':[lad_wallmotion], 'LCX4dmspect': [lcx_4dmspect], 'LCXWallthick': [lcx_wallthick] , 'LCXWallmotion': [lcx_wallmotion], 'RCA4dmspect': [rca_4dmspect], 'RCAWallthick': [rca_wallthick], 'RCAWallmotion': [rca_wallmotion], 'LVEF': [lvef]}
+        file_d = open("static/model/model_mpi", "rb")
+        model = pickle.load(file_d)
+        df = pd.DataFrame(data)
+        print(df)
         print(model)
-    return render(request, 'predict.html')
+        result = model.predict(df.as_matrix())
+        file_d.close
+        addPredict(request)
+        no = int(patient_info.objects.latest('no').no)
+    return HttpResponseRedirect('/prediction?no='+str(no))
 
