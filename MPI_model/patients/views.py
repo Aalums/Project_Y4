@@ -4,8 +4,10 @@ from django.urls import reverse
 from django.template import loader
 from .models import patients, patient_info
 from accounts.models import user
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='accounts:user_login')
 def addpatient(request):
     if request.method == 'POST':
         patient = patients()
@@ -25,6 +27,7 @@ def addpatient(request):
         }
         return HttpResponse(template.render(context, request))
 
+@login_required(login_url='accounts:user_login')
 def patientList(request):
     print(request)
     context = {
@@ -33,6 +36,7 @@ def patientList(request):
     }
     return render(request, 'patient_list.html', context)
 
+@login_required(login_url='accounts:user_login')
 def patientInfo(request):
     print(request)
     patient_id = int(request.GET.get('pid'))

@@ -3,9 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
 from patients.models import patients, patient_info
+from django.contrib.auth.decorators import login_required
 import pickle
-# import pandas as pd
 
+@login_required(login_url='accounts:user_login')
 def prediction(request):
     if request.method == 'POST':
         print(request)
@@ -48,6 +49,7 @@ def prediction(request):
         }
         return render(request, 'prediction.html', context)
 
+@login_required(login_url='accounts:user_login')
 def addPredict(request):
     if request.method == 'POST':
         print(request)
@@ -86,6 +88,7 @@ def addPredict(request):
         }
         return render(request, 'addprediction.html', context)
 
+@login_required(login_url='accounts:user_login')
 def predict(request):
     ls_data = [1]
     if(request.method == 'POST'):
