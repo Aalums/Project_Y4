@@ -9,17 +9,7 @@ from django.contrib import messages
 
 #Authen
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
-# Create your views here.
-# def index(request):
-#     header_str = 'Hello'
-#     template = loader.get_template('login.html')
-#     account = user.objects.filter(username='aal')
-#     context = {
-#         'var1': header_str,
-#         'user': account[0].username
-#     }
-#     return HttpResponse(template.render(context, request))
+from django.contrib.auth.decorators import login_required
 
 def login_request(request):
     if request.method == 'POST':
@@ -40,6 +30,7 @@ def login_request(request):
     else:
         return render(request, 'login.html', {})
 
+@login_required(login_url='accounts:user_login')
 def logout_request(request):
     logout(request)
     return HttpResponseRedirect(reverse('accounts:user_login'))

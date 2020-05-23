@@ -23,7 +23,7 @@ def addpatient(request):
         print(request)
         template = loader.get_template('addpatient.html')
         context = {
-            'user_login' : request.user.username
+            'user_login' : request.user.get_full_name()
         }
         return HttpResponse(template.render(context, request))
 
@@ -32,7 +32,7 @@ def patientList(request):
     print(request)
     context = {
         'list_patient': list(patients.objects.all()),
-        'user_login' : request.user.username
+        'user_login' : request.user.get_full_name()
     }
     return render(request, 'patient_list.html', context)
 
@@ -44,6 +44,6 @@ def patientInfo(request):
     context = {
         'patient': patients.objects.get(pid = patient_id),
         'patient_info': list(patient_info.objects.filter(pid = patient_id)),
-        'user_login' : request.user.username
+        'user_login' : request.user.get_full_name()
     }        
     return render(request, 'patient_info.html', context)
