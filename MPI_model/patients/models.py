@@ -1,4 +1,6 @@
 from django.db import models
+import pytz
+from datetime import datetime, timezone
 
 # Create your models here.
 class patients(models.Model):
@@ -10,7 +12,7 @@ class patients(models.Model):
 
 class patient_info(models.Model):
     no = models.AutoField(primary_key=True)
-    date = models.DateTimeField(auto_now_add=True, blank=True)
+    date = models.DateTimeField(auto_now_add=False, auto_now=format(datetime.now(timezone.utc).astimezone(pytz.timezone('Asia/Bangkok')).astimezone()))
     age = models.IntegerField(default=0)
     BMI = models.DecimalField(max_digits=20, decimal_places=2)
     DM = models.IntegerField(default=0)

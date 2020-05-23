@@ -6,6 +6,10 @@ from patients.models import patients, patient_info
 from django.contrib.auth.decorators import login_required
 import pickle
 
+#time
+import pytz
+from datetime import datetime, timezone
+
 @login_required(login_url='accounts:user_login')
 def prediction(request):
     if request.method == 'POST':
@@ -37,13 +41,19 @@ def prediction(request):
             return render(request, 'patient_info.html', context)
 
     else :
-        print(request)
+        utc_dt = datetime.now(timezone.utc)
+        BKK = pytz.timezone('Asia/Bangkok')
+        # print("BKK time   {}".patient_info.objects.filter(patient_info__no = no)[0].pid)
+        
         no = int(request.GET.get('no'))
         patient_id = patients.objects.filter(patient_info__no = no)[0].pid
+        date = (patient_info.objects.filter(no = no)[0].date).now().date
+
         print("No = " + str(no))
         print("pid = " + str(patient_id))
         context = {
             'patient': patients.objects.get(pid = patient_id),
+            'date' : date,
             'patient_info': patient_info.objects.get(no = no),
             'user_login' : request.user.username
         }
@@ -52,11 +62,19 @@ def prediction(request):
 @login_required(login_url='accounts:user_login')
 def addPredict(request):
     if request.method == 'POST':
+        
+        #time zone
+        utc_dt = datetime.now(timezone.utc)
+        BKK = pytz.timezone('Asia/Bangkok')
+        print("BKK time   {}".format(utc_dt.astimezone(BKK).astimezone()))
         print(request)
+        
         patient_id =  int(request.POST.get('pid'))
         print("Add Info pid = " + str(patient_id))
+        
         patientInfo = patient_info()
         patientInfo.age = request.POST.get('age')
+        patientInfo.date2 = format(utc_dt.astimezone(BKK).astimezone())
         patientInfo.BMI = request.POST.get('bmi')
         patientInfo.DM = request.POST.get('dm')
         patientInfo.HT = request.POST.get('ht')

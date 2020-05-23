@@ -20,7 +20,7 @@
                         HN : {{ patient.HN }}
                       </div>
                       <div class="col-sm-6">
-                        Date : {{ patient_info.date }}
+                        Date : {{date}}
                       </div>
                     </div>
 
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                             <th>BMI</th>
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                             <th></th>
@@ -214,7 +214,7 @@
                             <div class="modal-footer">
                               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                               <a href="/prediction?no={{ patient_info.no }}">
-                                <input type="submit" name="" value="Save" class="btn btn-primary">
+                                <input class="btn btn-primary" type="submit" name="_method" value="Save">
                               </a>
                             </div>
                           </div>
@@ -236,7 +236,7 @@
                             <div class="modal-footer">
                               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                               <a href="/patients/patientinfo/?pid={{ patient.HN }}">
-                                <input type="submit" name="" value="Delete" class="btn btn-primary">
+                                <input class="btn btn-primary" type="submit" name="_method" value="Delete">
                               </a>
                             </div>
                           </div>
