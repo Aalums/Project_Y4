@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 09:55 AM
+-- Generation Time: Sep 22, 2020 at 07:00 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -152,8 +152,10 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-04-22 13:43:19.880652', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
-(2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-05-07 07:04:01.263335', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000');
+(1, 'pbkdf2_sha256$180000$0GHMNFGj27iU$vD7ULuAfcmQorTwgjtYFpHA91qh/NgplJd6M/6AENr0=', '2020-06-08 10:04:25.326799', 1, 'admin', '', '', '', 1, 1, '2020-04-07 15:49:05.018098'),
+(2, 'pbkdf2_sha256$180000$RcrCRF7NuHAT$TsmK3DfjaWJ1Gy2vlAAT3DPelUlEBtrE4s/YtWsn+TQ=', '2020-09-22 04:51:29.798318', 0, 'phpond', 'pond', 'pond', '1234@gmail.com', 0, 1, '2020-04-12 15:18:59.000000'),
+(3, 'pbkdf2_sha256$180000$EcwpoOgBgqct$ZphuBYIvY5k1GWJmM8w4UCo7twpCgkv3DDZUpu3FB6c=', '2020-05-23 15:47:08.596813', 0, 'physician', 'Physician', 'Test', '', 0, 1, '2020-05-23 13:34:38.000000'),
+(4, 'pbkdf2_sha256$180000$zw8q9dNgZnHC$D72HhtvwBjSyoLr87FgbH/DxQn0istTPUyrCoq2JBZo=', NULL, 0, 'doctor', '', '', '', 0, 1, '2020-06-08 10:09:01.811152');
 
 -- --------------------------------------------------------
 
@@ -205,7 +207,10 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (2, '2020-04-07 16:01:44.823923', '4', 'aal', 1, '[{\"added\": {}}]', 7, 1),
 (3, '2020-04-12 15:18:59.235888', '2', 'phpond', 1, '[{\"added\": {}}]', 4, 1),
 (4, '2020-04-12 15:19:39.837769', '2', 'phpond', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]', 4, 1),
-(5, '2020-04-15 09:28:19.059670', '1', 'patients object (1)', 1, '[{\"added\": {}}]', 9, 1);
+(5, '2020-04-15 09:28:19.059670', '1', 'patients object (1)', 1, '[{\"added\": {}}]', 9, 1),
+(6, '2020-05-23 13:34:38.927502', '3', 'physician', 1, '[{\"added\": {}}]', 4, 1),
+(7, '2020-05-23 13:35:57.688583', '3', 'physician', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]', 4, 1),
+(8, '2020-06-08 10:09:02.052491', '4', 'doctor', 1, '[{\"added\": {}}]', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -286,7 +291,25 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (30, 'patients', '0006_auto_20200420_1659', '2020-04-20 09:59:10.474131'),
 (31, 'patients', '0006_auto_20200421_2106', '2020-04-21 14:06:55.582245'),
 (32, 'patients', '0007_patient_info', '2020-04-21 14:07:57.701216'),
-(33, 'patients', '0008_auto_20200507_1454', '2020-05-07 07:54:40.622738');
+(33, 'patients', '0008_auto_20200507_1454', '2020-05-07 07:54:40.622738'),
+(34, 'patients', '0009_auto_20200523_1503', '2020-05-23 08:03:53.188490'),
+(35, 'patients', '0010_auto_20200523_1507', '2020-05-23 08:07:12.875570'),
+(36, 'patients', '0011_auto_20200523_1516', '2020-05-23 08:16:39.660484'),
+(37, 'patients', '0009_auto_20200523_1553', '2020-05-23 08:53:18.300347'),
+(38, 'patients', '0010_remove_patient_info_date', '2020-05-23 08:55:58.997735'),
+(39, 'patients', '0011_patient_info_date', '2020-05-23 09:03:45.918532'),
+(40, 'patients', '0012_auto_20200523_1708', '2020-05-23 10:08:48.067835'),
+(41, 'patients', '0013_auto_20200523_1711', '2020-05-23 10:11:49.528552'),
+(42, 'patients', '0014_auto_20200523_1720', '2020-05-23 10:20:13.261178'),
+(43, 'patients', '0009_auto_20200523_1724', '2020-05-23 10:24:41.630324'),
+(44, 'patients', '0010_auto_20200523_1730', '2020-05-23 10:30:31.645706'),
+(45, 'patients', '0009_auto_20200523_1733', '2020-05-23 10:33:11.905985'),
+(46, 'patients', '0010_auto_20200523_1738', '2020-05-23 10:38:43.804418'),
+(47, 'patients', '0009_auto_20200523_1741', '2020-05-23 10:42:04.601528'),
+(48, 'patients', '0010_auto_20200523_1747', '2020-05-23 10:47:13.731525'),
+(49, 'patients', '0011_auto_20200523_1821', '2020-05-23 11:21:45.478452'),
+(50, 'patients', '0009_auto_20200523_1825', '2020-05-23 11:26:10.177315'),
+(51, 'patients', '0010_remove_patient_info_date2', '2020-05-23 12:16:25.595118');
 
 -- --------------------------------------------------------
 
@@ -305,8 +328,9 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('7xdoc0j8nqgtfhq5mw6bwlj37roszh8x', 'OWI1NGIzMjg2MTg4YmJmYWIxNWFmYmE0NGM0M2U4YTlkOGRhMTBjNTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZTlhODY4NzQ5NmEyMTBjMmNjYmJmODhhYTkyMTE4Y2M5ZTU4YjI4In0=', '2020-06-22 10:14:57.425661'),
+('kcqt9kjk4jjmcpefo04556mtybqvx1gn', 'OWI1NGIzMjg2MTg4YmJmYWIxNWFmYmE0NGM0M2U4YTlkOGRhMTBjNTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZTlhODY4NzQ5NmEyMTBjMmNjYmJmODhhYTkyMTE4Y2M5ZTU4YjI4In0=', '2020-10-06 04:51:29.812274'),
 ('ol7mov6yus0kj8xtknzssckwmpfbismf', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-05-06 13:43:19.989870'),
-('pm0fdr4izp2cvp0fme93sibxlw3lpnil', 'OWI1NGIzMjg2MTg4YmJmYWIxNWFmYmE0NGM0M2U4YTlkOGRhMTBjNTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZTlhODY4NzQ5NmEyMTBjMmNjYmJmODhhYTkyMTE4Y2M5ZTU4YjI4In0=', '2020-05-21 07:04:01.277293'),
 ('xpzu1rj011zc1d9im7pwok7tn6auwhew', 'NTY3YjZmODU3ODI1NTc2YzcyMWZlYTA1MzdkMjZkNjAyNzFlYTk1Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkN2M3ZGE1OTI4NGQ3ZjExYjhkNjg3ZWI5ZjQ1MjQxNDE5MjBhMzdmIn0=', '2020-04-21 15:49:14.352200');
 
 -- --------------------------------------------------------
@@ -328,7 +352,15 @@ CREATE TABLE `patients_patients` (
 --
 
 INSERT INTO `patients_patients` (`pid`, `HN`, `fname`, `lname`, `gender`) VALUES
-(1, 'PH-12345', 'Hataichanok', 'Sakkara', 1);
+(1, '115797-21', 'Somchai', 'Veera', 0),
+(2, '081129-67', 'Siri', 'Songkla', 1),
+(3, '193413-18', 'Pimpila', 'Malai', 1),
+(4, '011387-54', 'Khattiya ', 'Chamachoti ', 1),
+(5, '374621-03', 'Thidayu', 'Kanakomon', 1),
+(6, '206445-14', 'Khathawut', 'Rangavej', 0),
+(7, '126872-22', 'Chanthana', 'Vanikul', 1),
+(8, '248020-35', 'Chirawat', 'Kanoknawin', 0),
+(10, '169487-11', 'Nattarat', 'Seawong', 0);
 
 -- --------------------------------------------------------
 
@@ -338,7 +370,6 @@ INSERT INTO `patients_patients` (`pid`, `HN`, `fname`, `lname`, `gender`) VALUES
 
 CREATE TABLE `patients_patient_info` (
   `no` int(11) NOT NULL,
-  `date` datetime(6) NOT NULL,
   `age` int(11) NOT NULL,
   `BMI` decimal(20,2) NOT NULL,
   `DM` int(11) NOT NULL,
@@ -360,8 +391,19 @@ CREATE TABLE `patients_patient_info` (
   `LVEF` int(11) NOT NULL,
   `pid_id` int(11) NOT NULL,
   `CAG` int(11) NOT NULL,
-  `CAG_confirm` int(11) NOT NULL
+  `CAG_confirm` int(11) NOT NULL,
+  `date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patients_patient_info`
+--
+
+INSERT INTO `patients_patient_info` (`no`, `age`, `BMI`, `DM`, `HT`, `DLP`, `CKD`, `LAD4dmspect`, `LADwallthick`, `LADwallmotion`, `LADCAG`, `LCX4dmspect`, `LCXwallthick`, `LCXwallmotion`, `LCXCAG`, `RCA4dmspect`, `RCAwallthick`, `RCAwallmotion`, `RCACAG`, `LVEF`, `pid_id`, `CAG`, `CAG_confirm`, `date`) VALUES
+(1, 50, '28.00', 0, 0, 0, 0, '-0.90', '0.00', '1.00', 0, '4.10', '0.90', '-1.60', 0, '2.60', '0.40', '1.90', 0, 38, 4, 1, 1, '2014-05-12 15:08:20.421519'),
+(3, 56, '29.00', 0, 0, 0, 0, '4.70', '0.00', '-2.40', 0, '1.60', '0.90', '0.70', 0, '2.00', '0.40', '-1.30', 0, 50, 4, 1, 0, '2020-05-23 15:22:39.907303'),
+(4, 59, '24.77', 0, 1, 1, 1, '1.50', '2.10', '3.00', 0, '-0.60', '2.00', '2.80', 0, '0.10', '2.00', '2.10', 0, 24, 10, 1, 1, '2020-05-23 15:49:04.940735'),
+(5, 20, '24.00', 1, 1, 1, 0, '0.70', '0.70', '0.70', 0, '0.70', '0.40', '0.30', 0, '0.30', '0.60', '0.60', 0, 75, 4, 1, 1, '2020-06-05 04:45:53.208107');
 
 --
 -- Indexes for dumped tables
@@ -491,7 +533,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -509,7 +551,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -521,19 +563,19 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `patients_patients`
 --
 ALTER TABLE `patients_patients`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `patients_patient_info`
 --
 ALTER TABLE `patients_patient_info`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
